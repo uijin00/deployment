@@ -15,4 +15,4 @@ spec:
     spec:
       containers:
       - name: nginx-con
-        image: public.ecr.aws/docker/library/nginx:alpine
+        image: public.ecr.aws/docker/library/httpd:alpine
