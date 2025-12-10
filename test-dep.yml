@@ -1,18 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-dep
+  name: dep-fast
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: fast
   template:
     metadata:
-      name: nginx-pod
       labels:
-        app: nginx
+        app: fast
     spec:
       containers:
-      - name: nginx-con
-        image: public.ecr.aws/docker/library/httpd:alpine
+      - name: con-fast
+        image: 261595668962.dkr.ecr.ap-northeast-2.amazonaws.com/fast:2
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fast
+spec:
+  selector:
+    app: fast
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+#  type: LoadBalancer
